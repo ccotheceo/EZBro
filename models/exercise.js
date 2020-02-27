@@ -1,12 +1,13 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+module.exports = function(sequelize, DataTypes) {
+  var Exercise = sequelize.define("Exercise", {
+    name: DataTypes.STRING
+  });
 
-const exerciseSchema = new Schema({
-  name: { type: String, required: true },
-  // exercise: { type: String, required: true },
-  date: { type: Date, default: Date.now }
-});
+  Exercise.associate = function(models) {
+    Exercise.hasMany(models.Workouts, {
+      onDelete: "CASCADE"
+    });
+  };
 
-const Exercise = mongoose.model("Exercise", exerciseSchema);
-
-module.exports = Exercise;
+  return Exercise;
+};
