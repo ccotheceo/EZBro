@@ -1,5 +1,3 @@
-// Connecting to Database
-
 "use strict";
 
 var fs = require("fs");
