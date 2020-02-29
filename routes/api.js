@@ -1,15 +1,14 @@
-// Requiring our models and passport as we've configured it
-var db = require("../models");
-// var passport = require("../config/passport");
+const router = require("express").Router();
+const db = require("../models");
 
 module.exports = function(app) {
-  // Post route for saving new exercises to Workouts table
   app.post("/api/workouts", function(req, res) {
-    if (req.body.name === db.Workouts.body) {
-      return res.status(400).send({
-        message: "This person already in Database"
-      });
-    }
+    // I'm not sure if I need to check for existing workout???
+    // if (req.body.name === db.Workouts.body) {
+    //   return res.status(400).send({
+    //     message: "This workout already in Database"
+    //   });
+    // }
     db.Workouts.create({
       name: req.body.name
     }).then(function(dbProject) {
@@ -36,7 +35,7 @@ module.exports = function(app) {
   app.post("/api/exersice", function(req, res) {
     if (!req.session.user) {
       return res.status(400).send({
-        message: "You should be logged in before you can leave a comment"
+        message: "You should be logged in before you can add exercises"
       });
     }
     if (!req.body.body) {
@@ -54,8 +53,9 @@ module.exports = function(app) {
   });
 
   //##################################################
+  // Create a user tested with POSTMAN
   app.post("/api/create-user", function(req, res) {
-    if (!req.body.email || !req.body.password || !req.body.nickname) {
+    if (!req.body.email || !req.body.password) {
       req.session.error = "Please fill all inputs";
       res.redirect("/signup");
     }
@@ -71,7 +71,9 @@ module.exports = function(app) {
         db.User.create({
           email: req.body.email,
           password: req.body.password,
-          nickname: req.body.nickname
+          name: req.body.name,
+          age: req.body.age,
+          weight: req.body.weight
         }).then(result => {
           delete result.password;
           req.session.user = result;
