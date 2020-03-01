@@ -1,38 +1,58 @@
-import React from 'react'
+import React from 'react';
+import { Nav, Container, Card, ListGroup, Row, Col, Image } from 'react-bootstrap';
+
 
 
 export const Exercises = () => (
-        <div class="Whole-page">
-            <div class="header">
-                <h1>EZBRO</h1>
-            </div>
-            <nav>
-
-            </nav>
-            <div class="content">
-              <div class="exercise-card">
-                  <div>
-                    <h3>Exersises</h3>
-                  </div>
-                  <div>
-                      <ul>
-                          <li>Exercise #1</li>
-                          <li>Exercise #2</li>
-                          <li>Exercise #3</li>
-                      </ul>
-                  </div>
-                  <div>
-                      <ul>
-                          <li>Your Exercise #1</li>
-                          <li> Your Exercise #2</li>
-                          <li>Your Exercise #3</li>
-                      </ul>
-                  </div>
-              </div>
-
-            </div>
-            <div class="footer">
-
-            </div>
+    <div class="Whole-page">
+        <div class="header">
+            <h1>Exercises</h1>
         </div>
-    )
+        <div>
+            <Nav variant="tabs" defaultActiveKey="link-arms">
+                <Nav.Item>
+                    <Nav.Link eventKey="link-arms">Arms</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-legs">Legs</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-abs">Abs</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-chest">Chest</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-back">Back</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-shoulders">Shoulders</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-calves">Calves</Nav.Link>
+                </Nav.Item>
+
+            </Nav>
+            <Card>
+                <ListGroup varient="flush">
+                    <ListGroup.Item>
+                        <Container>
+                            <Row>
+                                <Col sm={4}>
+                                <Image src="holder.js/171x180" thumbnail />
+
+                                </Col>
+                                <Col sm={8}>
+                                    <Row><h5>Exercise Name</h5></Row>
+                                    <Row><h6>Exercise Equipment</h6></Row>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </ListGroup.Item>
+                </ListGroup>
+            </Card>
+
+        </div>
+
+    </div>
+)

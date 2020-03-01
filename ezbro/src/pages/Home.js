@@ -46,8 +46,8 @@ Inventore placeat quia eveniet, sapiente cumque ad nam saepe ducimus impedit opt
     />
 
     <Carousel.Caption>
-      <h3>Excersize</h3>
-      <p>Fill your workouts with a variety of diffrent excersizes</p>
+      <h3>Exercise</h3>
+      <p>Fill your workouts with a variety of diffrent exercises</p>
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
