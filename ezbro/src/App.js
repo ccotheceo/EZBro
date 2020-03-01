@@ -9,12 +9,14 @@ import {NoMatch} from './pages/NoMatch';
 import {Layout} from './components/layout';
 import {NavigationBar} from './components/NavigationBar';
 import {Jumbotron} from './components/Jumbotron';
+import {JumbotronBottom} from './components/JumbotronBottom';
 
 function App() {
   return (
     <React.Fragment>
       <NavigationBar/>
       <Jumbotron/>
+      <br></br>
       <Layout>
         <Router>
           <Switch>
@@ -29,6 +31,10 @@ function App() {
         </Router>
 
       </Layout>
+      <br></br>
+      <br></br>
+      <div className="position-relative"><JumbotronBottom /></div>
+      
     </React.Fragment>
   );
 }
