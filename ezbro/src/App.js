@@ -31,8 +31,9 @@ function App() {
         </Router>
 
       </Layout>
-     
-      <div className="fixed-bottom"><JumbotronBottom /></div>
+      <br></br>
+      <br></br>
+      <div className="position-relative"><JumbotronBottom /></div>
       
     </React.Fragment>
   );
