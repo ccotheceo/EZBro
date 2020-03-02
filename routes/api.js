@@ -3,20 +3,22 @@ const db = require("../models");
 
 module.exports = function(app) {
   app.post("/api/workouts", function(req, res) {
+    // Do I need to check this?????
     if (req.body.name === db.Workouts.body) {
       return res.status(400).send({
         message: "This workout already in Database"
       });
     }
     db.Workouts.create({
-      name: req.body.name
+      body: req.body.body,
+      date: req.body.date
     }).then(function(dbProject) {
       res.json(dbProject);
     });
   });
 
   // Get route
-  app.get("/api/workouts/:name", function(req, res) {
+  app.get("/api/workouts/:body", function(req, res) {
     db.Workouts.findOne({
       where: {
         body: req.params.body
@@ -31,23 +33,31 @@ module.exports = function(app) {
   });
 
   // // This workouts with sign-up
-  app.post("/api/exersice", function(req, res) {
+  app.post("/api/exercise", function(req, res) {
     if (!req.session.user) {
       return res.status(400).send({
         message: "You should be logged in before you can add exercises"
       });
     }
-    if (!req.body.body) {
-      return res.status(400).send({
-        message: "Body shouldn't be empty!"
-      });
-    }
     db.Exersice.create({
       name: req.body.name,
-      PersonId: req.body.PersonId,
-      UserId: req.session.user.id
+      PersonId: req.body.PersonId
     }).then(function(dbExercise) {
       res.json(dbExercise);
+    });
+  });
+
+  // Get route
+  app.get("/api/exercise/:id", function(req, res) {
+    db.Workouts.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: {
+        include: [db.User]
+      }
+    }).then(function(dbProject) {
+      res.json(dbProject);
     });
   });
 
