@@ -3,12 +3,11 @@ const db = require("../models");
 
 module.exports = function(app) {
   app.post("/api/workouts", function(req, res) {
-    // I'm not sure if I need to check for existing workout???
-    // if (req.body.name === db.Workouts.body) {
-    //   return res.status(400).send({
-    //     message: "This workout already in Database"
-    //   });
-    // }
+    if (req.body.name === db.Workouts.body) {
+      return res.status(400).send({
+        message: "This workout already in Database"
+      });
+    }
     db.Workouts.create({
       name: req.body.name
     }).then(function(dbProject) {
@@ -52,8 +51,10 @@ module.exports = function(app) {
     });
   });
 
+  // ############################
+  //  Creating API-routes for ExerciseWorkouts
+
   //##################################################
-  // Create a user tested with POSTMAN
   app.post("/api/create-user", function(req, res) {
     if (!req.body.email || !req.body.password) {
       req.session.error = "Please fill all inputs";
