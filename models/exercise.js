@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
     }
   });
 

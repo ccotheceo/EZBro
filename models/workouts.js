@@ -16,10 +16,8 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-    Workouts.hasMany(models.Exercise, {
-      foreignKey: {
-        allowNull: false
-      }
+    Workouts.belongsToMany(models.Exercise, {
+      through: "ExerciseWorkout"
     });
   };
 
