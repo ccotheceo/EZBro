@@ -22,7 +22,7 @@ export const Login = () => {
     e.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:8080/api/create-user",
+      url: "/api/create-user",
       data: {
         email: formValues.email,
         password: formValues.password,
@@ -38,7 +38,7 @@ export const Login = () => {
   };
 
   return (
-    <div class="Whole-page">
+    <div className="Whole-page">
       <Accordion>
         <Card>
           <Card.Header>

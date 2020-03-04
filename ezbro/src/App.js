@@ -15,6 +15,7 @@ import { UserContext } from "./userContext";
 
 function App() {
   const [user, setUser] = useState({ name: "test" });
+  // const [value, setValue] = useState ({})
   return (
     <React.Fragment>
       <NavigationBar />
