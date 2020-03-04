@@ -19,6 +19,7 @@ export const Workouts = () => (
                                 </Col>
                                 <Col sm={8}>
                                     <Row><h5>Workout #1 Name</h5></Row>
+                                    <Row><h6>Day of Workout</h6></Row>
                                 </Col>
                             </Row>
                         </Container>
@@ -32,6 +33,7 @@ export const Workouts = () => (
                                 </Col>
                                 <Col sm={8}>
                                     <Row><h5>Workout #2 Name</h5></Row>
+                                    <Row><h6>Day of Workout</h6></Row>
                                 </Col>
                             </Row>
                         </Container>
@@ -45,6 +47,7 @@ export const Workouts = () => (
                                 </Col>
                                 <Col sm={8}>
                                     <Row><h5>Workout #3 Name</h5></Row>
+                                    <Row><h6>Day of Workout</h6></Row>
                                 </Col>
                             </Row>
                         </Container>
