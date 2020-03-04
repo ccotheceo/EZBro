@@ -15,7 +15,8 @@ import { UserContext } from "./userContext";
 
 function App() {
   const [user, setUser] = useState({ name: "test" });
-  // const [value, setValue] = useState ({})
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <React.Fragment>
       <NavigationBar />

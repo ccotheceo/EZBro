@@ -22,7 +22,7 @@ export const Login = () => {
     e.preventDefault();
     axios({
       method: "post",
-      url: "/api/create-user",
+      url: "/api/sign-up",
       data: {
         email: formValues.email,
         password: formValues.password,
@@ -32,7 +32,7 @@ export const Login = () => {
       }
     }).then(data => {
       if (!data.error) {
-        // props.setUser
+        setFormValues(data);
       }
     });
   };
