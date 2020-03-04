@@ -5,6 +5,7 @@ import axios from "axios";
 
 export const Workouts = () => {
   const [user, setUser] = useContext(UserContext);
+
   const [formValues, setFormValues] = useState({
     body: "",
     date: ""
