@@ -1,21 +1,34 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 import React, { useState, useEffect } from 'react';
 import { Nav } from 'react-bootstrap';
 import ExerciseList from '../components/ExerciseList';
 import axios from 'axios';
+<<<<<<< HEAD
+=======
 =======
 import React from 'react';
 import { Nav, Container, Card, ListGroup, Row, Col, Image } from 'react-bootstrap';
 
 >>>>>>> 264b0859835cc190d95140a4d73a017012f5aa53
+>>>>>>> master
 
+<<<<<<< HEAD
+function Exercises() {
+=======
 function Exercises() ç{
+>>>>>>> master
     const [exerciseState, setExerciseState] = useState({
         
         excercises: []
     });
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
     useEffect(() => {
         // For demonstration purposes, we mock an API call.
         axios.get('https://wger.de/api/v2/exercise/?limit=700')
@@ -25,7 +38,11 @@ function Exercises() ç{
             const singleEntry = {}
             let exercises = res.data.results[i].exercises
             let exercisesName = res.data.results[i].name
+<<<<<<< HEAD
+            let exercisesEquipment = res.data.results[i].equipment
+=======
             let exercisesEquipment = res.data.results[i].equipmentgi
+>>>>>>> master
             singleEntry.category = exercises;
             singleEntry.name = exercisesName;
             singleEntry.equipment = exercisesEquipment;
@@ -76,6 +93,9 @@ function Exercises() ç{
     )
 }
 
+<<<<<<< HEAD
+export default Exercises;
+=======
 export default Exercises;
 =======
 export const Exercises = () => (
@@ -132,3 +152,4 @@ export const Exercises = () => (
     </div>
 )
 >>>>>>> 264b0859835cc190d95140a4d73a017012f5aa53
+>>>>>>> master

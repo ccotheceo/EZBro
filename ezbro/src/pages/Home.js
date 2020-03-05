@@ -9,6 +9,14 @@ import Ropes from '../assets/ropes.jpeg';
 export const Home = () => (
         <div class="Whole-page">
 <<<<<<< HEAD
+<<<<<<< HEAD
+            {/* <div class="header">
+                <h1>EZBRO</h1>
+            </div>
+            <nav>
+=======
+=======
+>>>>>>> master
 <Carousel>
   <Carousel.Item>
     <img
@@ -27,12 +35,16 @@ export const Home = () => (
       src={Ropes}
       alt="Third slide"
     />
+<<<<<<< HEAD
+>>>>>>> master
+=======
 =======
             {/* <div class="header">
                 <h1>EZBRO</h1>
             </div>
             <nav>
 >>>>>>> 264b0859835cc190d95140a4d73a017012f5aa53
+>>>>>>> master
 
     <Carousel.Caption>
       <h3>Exercise</h3>
@@ -59,7 +71,10 @@ export const Home = () => (
     />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> master
             </div> */}
 
 <Carousel>
@@ -105,7 +120,12 @@ export const Home = () => (
       alt="Fourth slide"
     />
 
+<<<<<<< HEAD
+=======
+>>>>>>> master
+=======
 >>>>>>> 264b0859835cc190d95140a4d73a017012f5aa53
+>>>>>>> master
     <Carousel.Caption>
       <h3>Coming Soon</h3>
       <p>Enter what you eat to stay on top of your diet</p>
