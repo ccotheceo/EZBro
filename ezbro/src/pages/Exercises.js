@@ -3,7 +3,11 @@ import { Nav } from 'react-bootstrap';
 import ExerciseList from '../components/ExerciseList';
 import axios from 'axios';
 
+<<<<<<< HEAD
 function Exercises() {
+=======
+function Exercises() ç{
+>>>>>>> master
     const [exerciseState, setExerciseState] = useState({
         
         excercises: []
@@ -18,7 +22,11 @@ function Exercises() {
             const singleEntry = {}
             let exercises = res.data.results[i].exercises
             let exercisesName = res.data.results[i].name
+<<<<<<< HEAD
             let exercisesEquipment = res.data.results[i].equipment
+=======
+            let exercisesEquipment = res.data.results[i].equipmentgi
+>>>>>>> master
             singleEntry.category = exercises;
             singleEntry.name = exercisesName;
             singleEntry.equipment = exercisesEquipment;
