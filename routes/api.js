@@ -2,25 +2,29 @@ const router = require("express").Router();
 const db = require("../models");
 
 module.exports = function(app) {
+  // POST route for Workouts
   app.post("/api/workouts", function(req, res) {
-    // I'm not sure if I need to check for existing workout???
-    // if (req.body.name === db.Workouts.body) {
-    //   return res.status(400).send({
-    //     message: "This workout already in Database"
-    //   });
-    // }
+    if (!req.session.user) {
+      return res.json({ error: "You should login first" });
+    }
     db.Workouts.create({
-      name: req.body.name
+      UserId: req.session.user.id,
+      body: req.body.body,
+      date: req.body.date
     }).then(function(dbProject) {
       res.json(dbProject);
     });
   });
 
-  // Get route
-  app.get("/api/workouts/:name", function(req, res) {
+  // Get route Workouts
+  app.get("/api/workouts/:id", function(req, res) {
+    if (!req.session.user) {
+      return res.json({ error: "You should login first" });
+    }
     db.Workouts.findOne({
       where: {
-        body: req.params.body
+        id: req.params.id,
+        UserId: req.session.user.id
       },
       include: {
         model: db.Exersice,
@@ -31,33 +35,108 @@ module.exports = function(app) {
     });
   });
 
-  // // This workouts with sign-up
-  app.post("/api/exersice", function(req, res) {
+  app.get("/api/workouts", function(req, res) {
     if (!req.session.user) {
-      return res.status(400).send({
-        message: "You should be logged in before you can add exercises"
-      });
+      return res.json({ error: "You should login first" });
     }
-    if (!req.body.body) {
-      return res.status(400).send({
-        message: "Body shouldn't be empty!"
-      });
+    db.Workouts.findAll({
+      where: {
+        UserId: req.session.user.id
+      },
+      include: {
+        model: db.Exersice,
+        include: [db.User]
+      }
+    }).then(function(dbProject) {
+      res.json(dbProject);
+    });
+  });
+
+  // ############################
+  // Get route NUTRITION
+  app.get("/api/nutrition", function(req, res) {
+    if (!req.session.user) {
+      return res.json({ error: "You should login first" });
     }
-    db.Exersice.create({
+    db.Nutrition.findAll({
+      where: {
+        UserId: req.session.user.id
+      }
+    }).then(function(dbNutrition) {
+      res.json(dbNutrition);
+    });
+  });
+
+  app.get("/api/nutrition/:id", function(req, res) {
+    db.Nutrition.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: {
+        include: [db.User]
+      }
+    }).then(function(dbNutrition) {
+      res.json(dbNutrition);
+    });
+  });
+
+  //  POST Nutrition
+  app.post("/api/nutrition", function(req, res) {
+    db.Nutrition.create({
+      food: req.body.food,
+      calories: req.body.calories
+    }).then(function(dbNutrition) {
+      res.json(dbNutrition);
+    });
+  });
+  // ##########################
+
+  //  POST Exercise
+  app.post("/api/exercise", function(req, res) {
+    db.Exercise.create({
       name: req.body.name,
-      PersonId: req.body.PersonId,
-      UserId: req.session.user.id
+      description: req.body.description
     }).then(function(dbExercise) {
       res.json(dbExercise);
     });
   });
 
+  // Get route for EXERCISES
+  app.get("/api/exercise/:id", function(req, res) {
+    db.Workouts.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: {
+        include: [db.User]
+      }
+    }).then(function(dbProject) {
+      res.json(dbProject);
+    });
+  });
+
+  // ############################
+  //  Creating API-routes for ExerciseWorkouts
+
+  app.post("/api/exercise-workouts", function(req, res) {
+    if (!req.session.user) {
+      return res.json({ error: "You should login first" });
+    }
+    db.ExerciseWorkout.create({
+      sets: req.body.sets,
+      repeats: req.body.repeats,
+      WorkoutId: req.body.WorkoutId,
+      ExerciseId: req.body.ExerciseId
+    }).then(function(dbProject) {
+      res.json(dbProject);
+    });
+  });
+
   //##################################################
-  // Create a user tested with POSTMAN
-  app.post("/api/create-user", function(req, res) {
+  // Sign-Up, Sign-in and Logout
+  app.post("/api/sign-up", function(req, res) {
     if (!req.body.email || !req.body.password) {
-      req.session.error = "Please fill all inputs";
-      res.redirect("/signup");
+      return res.json({ error: "Please fill all inputs" });
     }
     db.User.findOne({
       where: {
@@ -65,8 +144,7 @@ module.exports = function(app) {
       }
     }).then(exist => {
       if (exist) {
-        req.session.error = "Such user alread exist";
-        res.redirect("/signup");
+        return res.json({ error: "Such user alread exist" });
       } else {
         db.User.create({
           email: req.body.email,
@@ -77,16 +155,15 @@ module.exports = function(app) {
         }).then(result => {
           delete result.password;
           req.session.user = result;
-          res.redirect("/");
+          return res.json(result);
         });
       }
     });
   });
 
-  app.post("/api/login", function(req, res) {
+  app.post("/api/sign-in", function(req, res) {
     if (!req.body.email || !req.body.password) {
-      req.session.error = "Please fill all inputs";
-      res.redirect("/login");
+      return res.json({ error: "Please fill all inputs" });
     }
     db.User.findOne({
       where: {
@@ -94,21 +171,19 @@ module.exports = function(app) {
       }
     }).then(exist => {
       if (!exist) {
-        req.session.error = "User Doesn't exist";
-        res.redirect("/login");
+        return res.json({ error: "User Doesn't exist" });
       } else if (!exist.validPassword(req.body.password)) {
-        req.session.error = "Incorrect password";
-        res.redirect("/login");
+        return res.json({ error: "Incorrect password" });
       } else {
         delete exist.password;
         req.session.user = exist;
-        res.redirect("/");
+        return res.json(exist);
       }
     });
   });
 
   app.get("/logout", function(req, res) {
     delete req.session.user;
-    res.redirect("/login");
+    return res.json({ success: true });
   });
 };

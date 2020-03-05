@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { Nav } from 'react-bootstrap';
 import ExerciseList from '../components/ExerciseList';
 import axios from 'axios';
+=======
+import React from 'react';
+import { Nav, Container, Card, ListGroup, Row, Col, Image } from 'react-bootstrap';
+
+>>>>>>> 264b0859835cc190d95140a4d73a017012f5aa53
 
 function Exercises() ç{
     const [exerciseState, setExerciseState] = useState({
@@ -9,6 +15,7 @@ function Exercises() ç{
         excercises: []
     });
 
+<<<<<<< HEAD
     useEffect(() => {
         // For demonstration purposes, we mock an API call.
         axios.get('https://wger.de/api/v2/exercise/?limit=700')
@@ -70,3 +77,58 @@ function Exercises() ç{
 }
 
 export default Exercises;
+=======
+export const Exercises = () => (
+    <div class="Whole-page">
+        <div class="header">
+            <h1>Exercises</h1>
+        </div>
+        <div>
+            <Nav variant="tabs" defaultActiveKey="link-arms">
+                <Nav.Item>
+                    <Nav.Link eventKey="link-arms">Arms</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-legs">Legs</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-abs">Abs</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-chest">Chest</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-back">Back</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-shoulders">Shoulders</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-calves">Calves</Nav.Link>
+                </Nav.Item>
+
+            </Nav>
+            <Card>
+                <ListGroup varient="flush">
+                    <ListGroup.Item>
+                        <Container>
+                            <Row>
+                                <Col sm={4}>
+                                <Image src="holder.js/171x180" thumbnail />
+
+                                </Col>
+                                <Col sm={8}>
+                                    <Row><h5>Exercise Name</h5></Row>
+                                    <Row><h6>Exercise Equipment</h6></Row>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </ListGroup.Item>
+                </ListGroup>
+            </Card>
+
+        </div>
+
+    </div>
+)
+>>>>>>> 264b0859835cc190d95140a4d73a017012f5aa53

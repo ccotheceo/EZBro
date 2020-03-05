@@ -42,5 +42,14 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+
+  // Association
+  User.associate = function(models) {
+    User.hasMany(models.Workouts, {
+      foreignKey: {
+        allowNull: true
+      }
+    });
+  };
   return User;
 };
